@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSS Registration</title>
+
+<style>
+*{box-sizing:border-box;}
+body{margin:0;font-family:Segoe UI;background:linear-gradient(to right,#1e3c72,#2a5298);}
+.registration-form{display:flex;justify-content:center;align-items:center;min-height:100vh;}
+.form{background:#fff;padding:30px;width:95%;max-width:500px;border-radius:12px;}
+
+.form-row{display:flex;gap:10px;}
+.form-group{flex:1;display:flex;flex-direction:column;}
+
+input{
+  width:100%;
+  padding:10px;
+  margin:5px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.gender-box{
+  margin-top:10px;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+.gender-title{
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.radio-group{
+  display:flex;
+  gap:20px;
+}
+
+input[type="radio"]{
+  width:auto;
+}
+
+.form-buttons{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+button{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  font-weight:bold;
+}
+
+.submit-btn{background:#1e3c72;color:white;}
+.reset-btn{background:#ccc;}
+
+@media(max-width:600px){
+  .form-row{flex-direction:column;}
+}
+</style>
+
+</head>
+<body>
+
+<div class="registration-form">
+<form class="form">
+
+<h2>NSS Registration</h2>
+
+<div class="form-row">
+<div class="form-group">
+<input type="text" name="full_name" placeholder="Full Name" required>
+</div>
+
+<div class="form-group">
+<input type="text" name="roll_number" placeholder="Roll Number" required>
+</div>
+</div>
+
+<div class="gender-box">
+    <div class="gender-title">Gender</div>
+    <div class="radio-group">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" value="Other"> Other</label>
+    </div>
+</div>
+
+<div class="form-group">
+<input type="tel" name="phone" placeholder="Phone Number" required>
+</div>
+
+<div class="form-group">
+<input type="email" name="email" placeholder="Email" required>
+</div>
+
+<div class="form-buttons">
+<button type="submit" class="submit-btn">Register</button>
+<button type="reset" class="reset-btn">Reset</button>
+</div>
+
+</form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+const supabaseClient = supabase.createClient(
+  "https://jkpbkjyqlvsbnuwhmaas.supabase.com",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImprcGJranlxbHZzYm51d2htYWFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyMDEzMDUsImV4cCI6MjA5MDc3NzMwNX0.NMw5zs9x8zkojJB3YuJyqPGzPNpBryfg8N6gEzLUEYg"
+);
+
+const form = document.querySelector(".form");
+
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const { error } = await supabaseClient.from("students").insert([{
+    full_name: form.full_name.value,
+    roll_number: form.roll_number.value,
+    gender: form.gender.value,
+    phone: form.phone.value,
+    email: form.email.value
+  }]);
+
+  if(error){
+    alert("❌ Error: " + error.message);
+  } else {
+    alert("✅ Data Stored Successfully");
+    form.reset();
+  }
+});
+</script>
+
+</body>
+</html>
