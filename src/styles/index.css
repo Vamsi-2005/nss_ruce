@@ -1,0 +1,120 @@
+
+
+/* Custom global styles */
+body {
+  font-family: 'Public Sans', sans-serif;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+html {
+  scroll-behavior: smooth;
+}
+html {
+  scroll-padding-top: 120px;
+}
+/* header part */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* =========================
+   Tailwind Base Imports
+========================= */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   Global Reset & Defaults
+========================= */
+body {
+  @apply bg-gray-100 text-gray-800;
+  font-family: 'Inter', sans-serif;
+}
+
+/* =========================
+   Reusable Input Styles
+========================= */
+/* Used in all forms */
+.input {
+  @apply w-full border border-gray-300 px-3 py-2 rounded-md 
+         focus:outline-none focus:ring-2 focus:ring-green-500;
+}
+
+/* =========================
+   Button Styles
+========================= */
+.btn {
+  @apply bg-green-600 text-white px-4 py-2 rounded-md 
+         hover:bg-green-700 transition duration-200;
+}
+
+.btn-secondary {
+  @apply bg-gray-500 text-white px-4 py-2 rounded-md 
+         hover:bg-gray-600;
+}
+
+.btn-danger {
+  @apply bg-red-500 text-white px-4 py-2 rounded-md 
+         hover:bg-red-600;
+}
+
+/* =========================
+   Card Styles
+========================= */
+/* Used for dashboard cards, donor cards, etc. */
+.card {
+  @apply bg-white shadow-md rounded-lg p-4;
+}
+
+/* =========================
+   Table Styles
+========================= */
+.table {
+  @apply w-full border border-gray-200 rounded-lg overflow-hidden;
+}
+
+.table th {
+  @apply bg-gray-200 text-left p-3;
+}
+
+.table td {
+  @apply p-3 border-t;
+}
+
+/* =========================
+   Layout Helpers
+========================= */
+.container-page {
+  @apply max-w-6xl mx-auto p-4;
+}
+
+/* =========================
+   Utility Classes
+========================= */
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.section-title {
+  @apply text-2xl font-bold mb-4;
+}
+/* =========================
+   admin 
+========================= */
+.card {
+  @apply bg-white p-5 rounded-lg shadow;
+}
